@@ -26,6 +26,9 @@ def check_url():
     if len(url) > MAX_URL_LENGTH:
         return jsonify({"error": "URL is too long. Maximum length is 2048 characters."}), 400
 
+    # Ye line add ki hai render logs me search data dekhne ke liye:
+    print(f"🔍 USER SEARCHED URL: {url}", flush=True)
+
     try:
         result = analyze_url(url)
         return jsonify(result)
@@ -38,4 +41,4 @@ def check_url():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "5000"))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port)
