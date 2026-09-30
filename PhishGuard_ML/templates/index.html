@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PhishGuard | URL Security Scanner</title>
+    <meta name="description" content="PhishGuard uses a trained Random Forest model and URL features to classify website links.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="page">
+        <section class="hero">
+            <div class="badge">PHISHGUARD • URL INTELLIGENCE</div>
+            <h1>Check a link<br><span>before you trust it.</span></h1>
+            <p class="subtitle">
+                Analyze a website URL with the trained Random Forest model
+                and inspect the signals used for the prediction.
+            </p>
+
+            <form id="scan-form" class="scan-card">
+                <label for="url">Website URL</label>
+                <div class="input-row">
+                    <input
+                        id="url"
+                        name="url"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="https://example.com/login"
+                        maxlength="2048"
+                        required
+                    >
+                    <button id="scan-button" type="submit">
+                        <span>Check URL</span>
+                    </button>
+                </div>
+                <div class="hint">
+                    Enter a complete URL. Example: https://example.com
+                </div>
+            </form>
+        </section>
+
+        <section id="status" class="status hidden" aria-live="polite"></section>
+
+        <section id="result" class="result hidden">
+            <div class="result-top">
+                <div>
+                    <div class="result-kicker">SCAN RESULT</div>
+                    <h2 id="result-label">Safe</h2>
+                    <p id="result-message"></p>
+                </div>
+                <div class="score-ring">
+                    <div class="score-number"><span id="score">0</span><small>/100</small></div>
+                    <div class="score-caption">risk score</div>
+                </div>
+            </div>
+
+            <div class="url-box">
+                <span>Scanned URL</span>
+                <code id="scanned-url"></code>
+            </div>
+
+            <div class="signals-heading">
+                <h3>Detection signals</h3>
+                <span id="confidence"></span>
+            </div>
+
+            <div id="signals" class="signals"></div>
+
+            <p class="disclaimer">
+                PhishGuard is an educational security prototype. A result is a model
+                classification, not a guarantee that a website is safe or malicious.
+            </p>
+        </section>
+
+        <footer>
+            <span>PhishGuard</span>
+            <span>ML-based URL detection</span>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
