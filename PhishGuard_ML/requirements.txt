@@ -1,7 +1,7 @@
-Flask>=3.0,<4
-gunicorn>=21,<24
-pandas>=2.0,<3
-numpy>=1.24,<3
-scikit-learn>=1.2,<2
-beautifulsoup4>=4.12,<5
-python-whois>=0.9,<1
+Flask
+gunicorn
+pandas
+numpy
+scikit-learn
+beautifulsoup4
+python-whois
